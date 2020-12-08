@@ -19,6 +19,8 @@ def get_params(data):
     rating2 = int(data.get('rating2', 10))
     metascore1 = int(data.get('metascore1', 0))
     metascore2 = int(data.get('metascore2', 100))
+    orderby = data.get('orderby', None)
+    desc = data.get('desc', 1)
 
     #Tupling the data
     years = (year1,year2)
@@ -26,7 +28,7 @@ def get_params(data):
     ratings = (rating1,rating2)
     metascores = (metascore1,metascore2)
 
-    return (name, genre, years, lengths, ratings, metascores)
+    return (name, genre, years, lengths, ratings, metascores, orderby, desc)
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})

@@ -22,7 +22,7 @@ def create_database(cursor, movie_dictionary_list):
 
     for i in range(len(movie_dictionary_list)):
         cursor.execute(f'INSERT INTO movie_table VALUES (?,?,?,?,?,?)',
-                        [movie_dictionary_list[i]["name"],
+                       [movie_dictionary_list[i]["name"],
                         movie_dictionary_list[i]["length"],
                         movie_dictionary_list[i]["year"],
                         movie_dictionary_list[i]["rating"],
@@ -37,9 +37,10 @@ def delete_database(cursor):
 
 #Extract a table from the database with given filters
 @connect_database
-def extract_data(cursor, name, genre, years, lengths, ratings, metascores):
+def extract_data(cursor, name, genre, years, lengths, ratings, metascores, orderby, desc):
     #Defining list to send back
     filtered_movies = []
+
 
     fetch_data = f"""SELECT *
                      FROM movie_table
@@ -50,6 +51,11 @@ def extract_data(cursor, name, genre, years, lengths, ratings, metascores):
                      AND METASCORE >= {metascores[0]} AND METASCORE <= {metascores[1]}
                      AND GENRE LIKE {genre}
                      AND NAME LIKE {name}"""
+
+    if orderby:
+        fetch_data += f""" ORDER BY {orderby}"""
+        if desc == 1:
+            fetch_data += """ DESC"""
 
     cursor.execute(fetch_data)
     result = cursor.fetchall()

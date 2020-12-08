@@ -1,6 +1,8 @@
+var desc = 1;
+
 function init(body){
     var url = "http://localhost:5000/movies"
-    httpGetAsync(url, function(response){
+    httpGetAsync(url, body, function(response){
                  var obj = JSON.parse(response)
                  console.log(obj)
                  fillMovies(obj['filtered_movies'])
@@ -10,17 +12,32 @@ function init(body){
 function listener(){
   var form = document.querySelector('form')
   form.addEventListener('change', function() {
-      init()
+    var body = getInfo()
+    init(body)
   })
+
+  var headSubjects = ["Name", "Genre", "Year", "Length", "Rating", "Metascore"]
+  for (let i=0; i<headSubjects.length; i++){
+    document.getElementById("head" + headSubjects[i]).addEventListener("click", function() {
+      var body = getInfo()
+      body['orderby'] = headSubjects[i]
+      if (desc==1) {
+        desc = 0
+      } else {
+        desc = 1
+      }
+      body['desc']=desc
+      init(body)
+    });
+  }
 }
 
-function httpGetAsync(theUrl, callback) {
+function httpGetAsync(theUrl, body, callback) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText)
     }
-    var body = getInfo()
     xmlHttp.open("POST", theUrl, true)
     xmlHttp.setRequestHeader('Content-type', 'application/json');
     xmlHttp.send(JSON.stringify(body))
@@ -33,7 +50,7 @@ function fillMovies(obj){
     var rowCount = table.rows.length;
     for (var i = tableHeaderRowCount; i < rowCount; i++) {
         table.deleteRow(tableHeaderRowCount);
-}
+    }
 
     obj.forEach(movie => {
       let row = table.insertRow()
@@ -46,23 +63,13 @@ function fillMovies(obj){
 }
 
 function getInfo(){
-  name = document.getElementById('name').value
-  genre = document.getElementById('genre').value
-  year1 = document.getElementById('year1').value
-  year2 = document.getElementById('year2').value
-  length1 = document.getElementById('length1').value
-  length2 = document.getElementById('length2').value
-  rating1 = document.getElementById('rating1').value
-  rating2 = document.getElementById('rating2').value
-  metascore1 = document.getElementById('metascore1').value
-  metascore2 = document.getElementById('metascore2').value
-  var body = {"name":name, "genre":genre,
-              "year1":year1, "year2":year2,
-              "length1":length1, "length2":length2,
-              "rating1":rating1, "rating2":rating2,
-              "metascore1":metascore1, "metascore2":metascore2}
+  var body = {}
+  var tableSubjects = ['name', 'genre', 'year1', 'year2', 'length1', 'length2', 'rating1', 'rating2', 'metascore1', 'metascore2']
+  for (let i=0; i<tableSubjects.length; i++){
+    body[tableSubjects[i]]=document.getElementById(tableSubjects[i]).value
+  }
   return body
 }
 
-init()
+init({})
 listener()
