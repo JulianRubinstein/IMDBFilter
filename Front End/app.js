@@ -1,7 +1,7 @@
 var desc = 1;
 
 function init(body){
-    var url = "https://ec2-3-15-233-240.us-east-2.compute.amazonaws.com:443/movies"
+    var url = "ec2-3-15-233-240.us-east-2.compute.amazonaws.com:443/movies"
     httpGetAsync(url, body, function(response){
                  var obj = JSON.parse(response)
                  console.log(obj)
