@@ -34,11 +34,6 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
 
-# start = time.time()
-# dtbs.refresh_data(199)
-# end = time.time()
-# print(end - start)
-
 class Movies(Resource):
     def post(self):
         data = request.get_json()
@@ -49,4 +44,4 @@ class Movies(Resource):
 api.add_resource(Movies, "/movies")
 
 if __name__ == "__main__":
-    app.run(host = "0.0.0.0", port=5000, debug=True)
+    app.run(host = "0.0.0.0", port=443, debug=True)
