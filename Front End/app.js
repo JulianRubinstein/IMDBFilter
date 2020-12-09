@@ -1,7 +1,7 @@
 var desc = 1;
 
 function init(body){
-    var url = "http://localhost:5000/movies"
+    var url = "http://ec2-3-15-233-240.us-east-2.compute.amazonaws.com:5000/movies"
     httpGetAsync(url, body, function(response){
                  var obj = JSON.parse(response)
                  console.log(obj)
@@ -30,6 +30,14 @@ function listener(){
       init(body)
     });
   }
+
+  var elements = document.getElementsByClassName("movie")
+  for (let i = 0; i < elements.length; i++) {
+      elements[i].addEventListener('click', function(){
+        console.log("hey")
+        window.open([url], '_blank')
+      });
+  }
 }
 
 function httpGetAsync(theUrl, body, callback) {
@@ -44,10 +52,10 @@ function httpGetAsync(theUrl, body, callback) {
 }
 
 function fillMovies(obj){
-    const table = document.getElementById("movies");
-
+    var table = document.getElementById("movies");
     var tableHeaderRowCount = 1;
     var rowCount = table.rows.length;
+
     for (var i = tableHeaderRowCount; i < rowCount; i++) {
         table.deleteRow(tableHeaderRowCount);
     }
@@ -55,6 +63,10 @@ function fillMovies(obj){
     obj.forEach(movie => {
       let row = table.insertRow()
       let movieArr = [movie.name, movie.genre, movie.year, movie.length, movie.rating, movie.metascore]
+      let query = String(movie.name).replaceAll(" ", "+")
+
+      row.setAttribute("href", "https://www.google.com/search?q=" + query)
+      row.setAttribute("class", "movie")
 
       for (let i=0; i<6; i++){
       	row.insertCell(i).innerHTML = movieArr[i]

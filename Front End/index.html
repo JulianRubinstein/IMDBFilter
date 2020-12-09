@@ -1,19 +1,19 @@
 <head>
     
-    <title>IMDB Statistics</title>
+    <title>IMDB Filter</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 
 
 <body>
-    <h1>Welcome to IMDB Statistics</h1>
-    <h2>This simple website offers a daily updating database and statistics of IMDB's top 10,000 movies.</h2>
+    <h1>IMDB Filter</h1>
+    <h2>As IMDB doesn't have a comfortable and quick movie filter, this site was created. This simple website offers a daily updating database of IMDB's top 10,000 movies which can be searched, filtered and sorted.</h2>
     
     <form>
         
         <p1>Name:</p1>
-        <input type="text" name="name" id="name" value="">
+        <input type="text" name="name" id="name" value=""> &nbsp;&nbsp;
 
         Genre:
         <select name="genre" id="genre">
@@ -337,8 +337,10 @@
         </select>
 
     </form>
-
-    <table id="movies">
+    
+    <h3>Click the table head to sort and click the movie to link to the google movie page:</h3>
+    
+    <table class="table" id="movies">
         <tr>
             <th id = headName>Name</th>
             <th id = headGenre>Genre</th>

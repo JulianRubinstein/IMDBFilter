@@ -1,17 +1,21 @@
 body {
     text-align:center;
-    font-family: Georgia, serif;
 }
 
 #movies {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 95%;
 }
 
 #movies td, #movies th {
   border: 1px solid #ddd;
   padding: 8px;
+}
+
+.table {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #movies tr:nth-child(even){background-color: #f2f2f2;}
