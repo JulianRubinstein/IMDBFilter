@@ -31,7 +31,7 @@ def get_params(data):
     return (name, genre, years, lengths, ratings, metascores, orderby, desc)
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+cors = CORS(app)
 api = Api(app)
 
 class Movies(Resource):
@@ -39,9 +39,14 @@ class Movies(Resource):
         data = request.get_json()
         params = get_params(data)
         filtered_movies = dtbs.extract_data(*params)
-        return {"filtered_movies":filtered_movies}
+        return {"filtered_movies":filtered_movies,
+                "status_code":200,
+                "headers":{
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                }}
 
 api.add_resource(Movies, "/movies")
 
 if __name__ == "__main__":
-    app.run(host = "0.0.0.0", port=8080, debug=True)
+    app.run(host = "0.0.0.0", port=80, debug=True)
