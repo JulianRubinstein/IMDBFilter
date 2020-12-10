@@ -1,7 +1,7 @@
 var desc = 1;
 
 function init(body){
-    var url = "http://localhost/movies"
+    var url = "https://18.222.112.7/movies"
     httpGetAsync(url, body, function(response){
                  var obj = JSON.parse(response)
                  console.log(obj)
