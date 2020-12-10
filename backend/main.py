@@ -40,11 +40,7 @@ class Movies(Resource):
         params = get_params(data)
         filtered_movies = dtbs.extract_data(*params)
         return {"filtered_movies":filtered_movies,
-                "status_code":200,
-                "headers":{
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*"
-                }}
+                "status_code":200}
 
 api.add_resource(Movies, "/movies")
 
