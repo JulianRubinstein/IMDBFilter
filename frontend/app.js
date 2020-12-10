@@ -1,7 +1,7 @@
 var desc = 1;
 
 function init(body){
-    var url = "https://18.222.112.7/movies"
+    var url = "https://imdb--backend.herokuapp.com/movies"
     httpGetAsync(url, body, function(response){
                  var obj = JSON.parse(response)
                  console.log(obj)
