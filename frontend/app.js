@@ -74,8 +74,8 @@ function fillMovies(obj){
         if (i == 0) {
           let query = String(movieArr[i]).replaceAll(" ", "+")
           cell.setAttribute("href", "https://www.google.com/search?q=" + query)
+          cell.setAttribute("class", "movie")
         }
-
       }
     });
 }
