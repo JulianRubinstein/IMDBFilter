@@ -63,13 +63,19 @@ function fillMovies(obj){
     obj.forEach(movie => {
       let row = table.insertRow()
       let movieArr = [movie.name, movie.genre, movie.year, movie.length, movie.rating, movie.metascore]
-      let query = String(movie.name).replaceAll(" ", "+")
-
-      row.setAttribute("href", "https://www.google.com/search?q=" + query)
-      row.setAttribute("class", "movie")
+      // let query = String(movie.name).replaceAll(" ", "+")
+      //
+      // row.setAttribute("href", "https://www.google.com/search?q=" + query)
+      // row.setAttribute("class", "movie")
 
       for (let i=0; i<6; i++){
-      	row.insertCell(i).innerHTML = movieArr[i]
+      	let cell = row.insertCell(i)
+        cell.innerHTML = movieArr[i]
+        if (i == 0): {
+          let query = String(movieArr[i]).replaceAll(" ", "+")
+          cell.setAttribute("href", "https://www.google.com/search?q=" + query)
+        }
+
       }
     });
 }
