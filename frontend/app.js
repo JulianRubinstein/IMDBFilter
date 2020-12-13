@@ -71,7 +71,7 @@ function fillMovies(obj){
       for (let i=0; i<6; i++){
       	let cell = row.insertCell(i)
         cell.innerHTML = movieArr[i]
-        if (i == 0): {
+        if (i == 0) {
           let query = String(movieArr[i]).replaceAll(" ", "+")
           cell.setAttribute("href", "https://www.google.com/search?q=" + query)
         }
