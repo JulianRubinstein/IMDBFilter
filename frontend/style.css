@@ -20,13 +20,19 @@ body {
 
 #movies tr:nth-child(even){background-color: #f2f2f2;}
 
-#movies tr:hover {background-color: #ddd;}
+#movies tr:hover{background-color: #ddd;}
 
 #movies th {
+  cursor:pointer;
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: Yellow;
   color: Black;
 }
-    
+
+a {
+    color: black;
+    cursor:pointer;
+    text-decoration:none;
+  }

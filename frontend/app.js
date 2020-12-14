@@ -16,6 +16,13 @@ function listener(){
     init(body)
   })
 
+  form.addEventListener('keypress', function (press) {
+    if (press.key === 'Enter') {
+      var body = getInfo()
+      init(body)
+      }
+  });
+
   var headSubjects = ["Name", "Genre", "Year", "Length", "Rating", "Metascore"]
   for (let i=0; i<headSubjects.length; i++){
     document.getElementById("head" + headSubjects[i]).addEventListener("click", function() {
@@ -30,14 +37,6 @@ function listener(){
       init(body)
     });
   }
-
-  var elements = document.getElementsByClassName("movie")
-  for (let i = 0; i < elements.length; i++) {
-      elements[i].addEventListener('click', function(){
-        console.log("hey")
-        window.open([url], '_blank')
-      });
-  }
 }
 
 function httpGetAsync(theUrl, body, callback) {
@@ -47,14 +46,14 @@ function httpGetAsync(theUrl, body, callback) {
             callback(xmlHttp.responseText)
     }
     xmlHttp.open("POST", theUrl, true)
-    xmlHttp.setRequestHeader('Content-type', 'application/json');
+    xmlHttp.setRequestHeader('Content-type', 'application/json')
     xmlHttp.send(JSON.stringify(body))
 }
 
 function fillMovies(obj){
-    var table = document.getElementById("movies");
-    var tableHeaderRowCount = 1;
-    var rowCount = table.rows.length;
+    var table = document.getElementById("movies")
+    var tableHeaderRowCount = 1
+    var rowCount = table.rows.length
 
     for (var i = tableHeaderRowCount; i < rowCount; i++) {
         table.deleteRow(tableHeaderRowCount);
@@ -63,18 +62,19 @@ function fillMovies(obj){
     obj.forEach(movie => {
       let row = table.insertRow()
       let movieArr = [movie.name, movie.genre, movie.year, movie.length, movie.rating, movie.metascore]
-      // let query = String(movie.name).replaceAll(" ", "+")
-      //
-      // row.setAttribute("href", "https://www.google.com/search?q=" + query)
-      // row.setAttribute("class", "movie")
 
       for (let i=0; i<6; i++){
       	let cell = row.insertCell(i)
-        cell.innerHTML = movieArr[i]
         if (i == 0) {
+          let aTag = document.createElement('a')
           let query = String(movieArr[i]).replaceAll(" ", "+")
-          cell.setAttribute("href", "https://www.google.com/search?q=" + query)
-          cell.setAttribute("class", "movie")
+          aTag.innerText = movieArr[i]
+          aTag.setAttribute("href", "https://www.google.com/search?q=" + query)
+          aTag.setAttribute("target", "_blank")
+          cell.appendChild(aTag)
+        }
+        else{
+          cell.innerHTML = movieArr[i]
         }
       }
     });
@@ -89,5 +89,6 @@ function getInfo(){
   return body
 }
 
-init({})
+
+init(getInfo())
 listener()
