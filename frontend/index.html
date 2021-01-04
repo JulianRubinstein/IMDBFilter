@@ -1,5 +1,5 @@
 <head>
-    
+
     <title>IMDB Filter</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -9,9 +9,9 @@
 <body>
     <h1>IMDB Filter</h1>
     <h2>As IMDB doesn't have a comfortable and quick movie filter, this site was created. This simple website offers a daily updating database of IMDB's top 10,000 movies which can be searched, filtered and sorted.</h2>
-    
+
     <form onkeypress="return event.keyCode != 13">
-        
+
         <p1>Name:</p1>
         <input type="text" name="name" id="name" value=""> &nbsp;&nbsp;
 
@@ -34,9 +34,10 @@
 
         <p1>Years:</p1>
         <select name="years" id="year1", value=>
+        <option value="2021">2021</option>
         <option value="2020">2020</option>
         <option value="2019">2019</option>
-        <option value="2018">2018</option>
+        <option value="2018" selected>2018</option>
         <option value="2017">2017</option>
         <option value="2016">2016</option>
         <option value="2015">2015</option>
@@ -44,7 +45,7 @@
         <option value="2013">2013</option>
         <option value="2012">2012</option>
         <option value="2011">2011</option>
-        <option value="2010" selected>2010</option>
+        <option value="2010">2010</option>
         <option value="2009">2009</option>
         <option value="2008">2008</option>
         <option value="2007">2007</option>
@@ -128,6 +129,7 @@
         </select>
         to
         <select name="years" id="year2">
+        <option value="2021">2021</option>
         <option value="2020">2020</option>
         <option value="2019">2019</option>
         <option value="2018">2018</option>
@@ -218,9 +220,9 @@
         <option value="1933">1933</option>
         <option value="1932">1932</option>
         <option value="1931">1931</option>
-        <option value="1930">1930</option> 
+        <option value="1930">1930</option>
         </select> &nbsp;&nbsp;
- 
+
         <p1>Lengths:</p1>
         <select name="lengths" id="length1">
         <option value="0">0</option>
@@ -249,7 +251,7 @@
         <option value="230">230</option>
         <option value="240">240</option>
         </select>
-        to 
+        to
         <select name="lengths" id="length2">
         <option value="0">0</option>
         <option value="10">10</option>
@@ -337,9 +339,9 @@
         </select>
 
     </form>
-    
+
     <h3>Click the table head to sort and click the movie to link to the google movie page:</h3>
-    
+
     <table class="table" id="movies">
         <tr>
             <th id = headName>Name</th>
@@ -349,7 +351,7 @@
             <th id = headRating>Rating</th>
             <th id = headMetascore>Metascore</th>
         </tr>
-        
+
     </table>
 </body>
 
