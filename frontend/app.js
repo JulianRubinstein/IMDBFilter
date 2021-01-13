@@ -89,6 +89,8 @@ function getInfo(){
   return body
 }
 
+function destroyLoader () { Destroy (document.getElementsByClassName("loader"), 1); }
 
 init(getInfo())
 listener()
+destroyLoader()
