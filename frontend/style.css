@@ -43,7 +43,7 @@ a {
   border-radius: 50%;
   width: 120px;
   height: 120px;
-  animation: spin 2s linear infinite, hide 10s linear forwards;
+  animation: spin 2s linear infinite, hide 20s linear forwards;
   margin-left: auto;
   margin-right: auto;
 }
