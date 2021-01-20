@@ -4,7 +4,6 @@ function init(body){
     var url = "https://imdb--backend.herokuapp.com/movies"
     httpGetAsync(url, body, function(response){
                  var obj = JSON.parse(response)
-                 console.log(obj)
                  fillMovies(obj['filtered_movies'])
                  })
 }
@@ -88,8 +87,6 @@ function getInfo(){
   }
   return body
 }
-
-function destroyLoader () { Destroy (document.getElementsByClassName("loader"), 1); }
 
 init(getInfo())
 listener()
