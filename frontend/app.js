@@ -90,4 +90,3 @@ function getInfo(){
 
 init(getInfo())
 listener()
-destroyLoader()
